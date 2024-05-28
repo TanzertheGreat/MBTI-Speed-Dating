@@ -1,0 +1,446 @@
+import java.awt.*;
+import java.util.ArrayList;
+public class MBTI {
+   private  ArrayList<String> name= new ArrayList<>();
+   private ArrayList<String> mbti=new ArrayList<>();
+   public MBTI() {
+       name.add("Tanzer");
+       mbti.add("ENFP");
+
+       name.add("Renee");
+       mbti.add("INFJ");
+
+       name.add("Alice");
+       mbti.add("INFJ");
+
+       name.add("Teresa");
+       mbti.add("INTJ");
+
+       name.add("Sophia");
+       mbti.add("ENFP");
+
+       name.add("William");
+       mbti.add("INFP");
+
+       name.add("Nemo");
+       mbti.add("INTP");
+
+       name.add("Crystal");
+       mbti.add("ENFJ");
+
+       name.add("Leining");
+       mbti.add("ENTP");
+
+       name.add("Cecilia");
+       mbti.add("ENTJ");
+
+       name.add("Jennifer");
+       mbti.add("INFP");
+
+       name.add("Mark");
+       mbti.add("INFJ");
+
+       name.add("Candy");
+       mbti.add("ISTP");
+
+       name.add("Max");
+       mbti.add("ENFP");
+
+       name.add("Jacob");
+       mbti.add("INFP");
+
+       name.add("Susy");
+       mbti.add("INFP");
+
+       name.add("Roger");
+       mbti.add("ENFP");
+
+       name.add("Mike");
+       mbti.add("INFP");
+
+       name.add("Jessica");
+       mbti.add("ENFJ");
+
+       name.add("Felicity");
+       mbti.add("ENTJ");
+   }
+
+
+    
+    //this method removes the user's name to avoid matching to that own person
+    public void remove(String n){
+       for (int i=0;i<name.size();i++) {
+        if (n.equals(name.get(i).toLowerCase())){
+            name.remove(i);
+            mbti.remove(i);
+        }
+       }
+    }
+    //based on compatibility, there are two levels matchp and matchp2
+    public ArrayList<String> matchp= new ArrayList<>();
+    public ArrayList<String> matchp2= new ArrayList<>();
+
+    public void names(String p) {//find matching mbti add to two lists
+        if (p.equals("estp")) {
+            matchp.add("istp");
+            matchp.add("esfj");
+            matchp.add("isfj");
+            matchp2.add("enfj");
+            matchp2.add("infj");
+            matchp2.add("estp");
+        }
+        else if (p.equals("istp")) {
+            matchp.add("estp");
+            matchp.add("esfj");
+            matchp.add("isfj");
+            matchp2.add("enfj");
+            matchp2.add("infj");
+            matchp2.add("istp");
+        }
+        else if (p.equals("esfp")) {
+            matchp.add("isfp");
+            matchp.add("estj");
+            matchp.add("istj");
+            matchp2.add("esfp");
+            matchp2.add("entj");
+            matchp2.add("intj");
+        }
+        else if (p.equals("isfp")) {
+            matchp.add("esfp");
+            matchp.add("estj");
+            matchp.add("istj");
+            matchp2.add("isfp");
+            matchp2.add("entj");
+            matchp2.add("intj");
+        }
+        else if (p.equals("estj")) {
+            matchp.add("esfp");
+            matchp.add("isfp");
+            matchp.add("istj");
+            matchp2.add("estj");
+            matchp2.add("enfp");
+            matchp2.add("infp");
+        }
+        else if (p.equals("istj")) {
+            matchp.add("esfp");
+            matchp.add("isfp");
+            matchp.add("estj");
+            matchp2.add("istj");
+            matchp2.add("enfp");
+            matchp2.add("infp");
+        }
+
+        else if (p.equals("enfp")) {
+            matchp.add("infp");
+            matchp.add("entj");
+            matchp.add("intj");
+            matchp2.add("enfp");
+            matchp2.add("istj");
+            matchp2.add("estj");
+        }
+        else if (p.equals("infp")) {
+            matchp.add("enfp");
+            matchp.add("entj");
+            matchp.add("intj");
+            matchp2.add("infp");
+            matchp2.add("istj");
+            matchp2.add("estj");
+        }
+        else if (p.equals("enfj")) {
+            matchp.add("infj");
+            matchp.add("entp");
+            matchp.add("intp");
+            matchp2.add("enfj");
+            matchp2.add("istp");
+            matchp2.add("estp");
+        }
+        else if (p.equals("infj")) {
+            matchp.add("enfj");
+            matchp.add("entp");
+            matchp.add("intp");
+            matchp2.add("infj");
+            matchp2.add("istp");
+            matchp2.add("estp");
+        }
+        else if (p.equals("entp")) {
+            matchp.add("enfj");
+            matchp.add("infk");
+            matchp.add("intp");
+            matchp2.add("entp");
+            matchp2.add("isfj");
+            matchp2.add("esfj");
+        }
+
+        else if (p.equals("intp")) {
+            matchp.add("enfj");
+            matchp.add("infj");
+            matchp.add("entp");
+            matchp2.add("intp");
+            matchp2.add("isfj");
+            matchp2.add("esfj");
+        }
+
+        else if (p.equals("entj")) {
+            matchp.add("enfp");
+            matchp.add("infp");
+            matchp.add("entj");
+            matchp2.add("intj");
+            matchp2.add("isfp");
+            matchp2.add("esfp");
+        }
+
+        else if (p.equals("intj")) {
+            matchp.add("enfp");
+            matchp.add("infp");
+            matchp.add("entj");
+            matchp2.add("intj");
+            matchp2.add("isfp");
+            matchp2.add("esfp");
+        }
+        else matchp.add("Error");
+    }
+
+    public String suggestion(String p){
+        int choice= (int)(Math.random()*5);
+        if(p.toUpperCase().equals("INTJ")){
+            if(choice==0){
+                return"•\tRespect and support their leadership abilities.";
+            }
+            if(choice==1){
+                return"•\tCommunicate directly and efficiently.";
+            }
+            if(choice==2) {
+                return"•\tParticipate in and support their plans and goals.";
+            }
+            else{
+                return"•\tProvide constructive feedback and suggestions.";
+            }
+        }
+        else if(p.toUpperCase().equals("INTP")){
+            if(choice==0){
+                return"•\tRespect their independence and avoid interfering.";
+            }
+            if(choice==1){
+                return"•\tCommunicate with logic and rationality.";
+            }
+            if(choice==2) {
+                return"•\tSupport their long-term plans and goals.";
+            }
+            else{
+                return"•\tEngage in deep and thoughtful discussions.";
+            }
+        }
+        else if(p.toUpperCase().equals("ENTJ")){
+            if(choice==0){
+                return"•\tRespect and support their leadership abilities.";
+            }
+            if(choice==1){
+                return"•\tCommunicate directly and efficiently.";
+            }
+            if(choice==2) {
+                return"•\tParticipate in and support their plans and goals.";
+            }
+            else{
+                return"•\tProvide constructive feedback and suggestions.";
+            }
+        }
+        else if(p.toUpperCase().equals("ENTP")){
+            if(choice==0){
+                return"•\tEngage in debates and intellectual exchanges with them.";
+            }
+            if(choice==1){
+                return"•\tKeep an open mind and accept different viewpoints.";
+            }
+            if(choice==2) {
+                return"•\tEncourage their innovation and willingness to challenge norms.";
+            }
+            else{
+                return"•\tOffer intellectual and knowledge-based support.";
+            }
+        }
+        else if(p.toUpperCase().equals("ISTJ")){
+            if(choice==0){
+                return"•\tRespect their traditions and rules.";
+            }
+            if(choice==1){
+                return"•\tProvide reliable and honest support.";
+            }
+            if(choice==2) {
+                return"•\tKeep your promises and commitments.";
+            }
+            else{
+                return"•\tCommunicate with facts and logic.";
+            }
+        }
+        else if(p.toUpperCase().equals("ISFJ")){
+            if(choice==0){
+                return"•\tShow care and thoughtfulness.";
+            }
+            if(choice==1){
+                return"•\tRespect their privacy and personal space.";
+            }
+            if(choice==2) {
+                return"•\tOffer practical help and support.";
+            }
+            else{
+                return"•\tCommunicate in a gentle and considerate manner.";
+            }
+        }
+        else if(p.toUpperCase().equals("ESTJ")){
+            if(choice==0){
+                return"•\tSupport their organizational and planning skills.";
+            }
+            if(choice==1){
+                return"•\tCommunicate clearly and directly.";
+            }
+            if(choice==2) {
+                return"•\tFollow rules and procedures.";
+            }
+            else{
+                return"•\tShow reliability and responsibility.";
+            }
+        }
+        else if(p.toUpperCase().equals("ESFJ")){
+            if(choice==0){
+                return"•\tParticipate in and support their social activities.";
+            }
+            if(choice==1){
+                return"•\tShow care and emotional support.";
+            }
+            if(choice==2) {
+                return"•\tOffer practical help as needed.";
+            }
+            else{
+                return"•\tMaintain a positive and cooperative attitude.";
+            }
+        }
+        else if(p.toUpperCase().equals("ISTP")){
+            if(choice==0){
+                return"•\tGive them freedom and independence.";
+            }
+            if(choice==1){
+                return"•\tEngage in hands-on and practical activities with them.";
+            }
+            if(choice==2) {
+                return"•\tRespect their privacy and space.";
+            }
+            else{
+                return"•\tCommunicate in a straightforward and direct manner.";
+            }
+        }
+        else if(p.toUpperCase().equals("ISFP")){
+            if(choice==0){
+                return"•\tRespect their individuality and creativity.";
+            }
+            if(choice==1){
+                return"•\tProvide emotional understanding and support.";
+            }
+            if(choice==2) {
+                return"•\tEngage in their artistic and creative pursuits.";
+            }
+            else{
+                return"•\tCommunicate in a gentle and considerate manner.";
+            }
+        }
+        else if(p.toUpperCase().equals("ESTP")){
+            if(choice==0){
+                return"•\tKeep up with their energy and adaptability.";
+            }
+            if(choice==1){
+                return"•\tJoin them in new experiences and adventures.";
+            }
+            if(choice==2) {
+                return"•\tCommunicate concisely and directly.";
+            }
+            else{
+                return"•\tSupport their spontaneous decisions and actions.";
+            }
+        }
+        else if(p.toUpperCase().equals("ESFP")){
+            if(choice==0){
+                return"•\tJoin in their social and entertaining activities.";
+            }
+            if(choice==1){
+                return"•\tShow appreciation and give compliments.";
+            }
+            if(choice==2) {
+                return"•\tEnjoy and share their moments of joy.";
+            }
+            else{
+                return"•\tMaintain an open and positive attitude.";
+            }
+        }
+        else if(p.toUpperCase().equals("INFJ")){
+            if(choice==0){
+                return"•\tRespect their depth and privacy.";
+            }
+            if(choice==1){
+                return"•\tShow sincerity and understanding.";
+            }
+            if(choice==2) {
+                return"•\tSupport their ideals and goals.";
+            }
+            else{
+                return"•\tCommunicate in a gentle and thoughtful manner.";
+            }
+        }
+        else if(p.toUpperCase().equals("INFP")){
+            if(choice==0){
+                return"•\tSupport their ideals and values.";
+            }
+            if(choice==1){
+                return"•\tProvide emotional understanding and support.";
+            }
+            if(choice==2) {
+                return"•\tShow sincerity and care.";
+            }
+            else{
+                return"•\tCommunicate in a gentle and considerate manner.";
+            }
+        }
+        else if(p.toUpperCase().equals("ENFJ")){
+            if(choice==0){
+                return"•\tParticipate in and support their plans and goals.";
+            }
+            if(choice==1){
+                return"•\tShow appreciation and gratitude.";
+            }
+            if(choice==2) {
+                return"•\tOffer emotional and practical support.";
+            }
+            else{
+                return"•\tMaintain a positive and cooperative attitude.";
+            }
+        }
+        else if(p.toUpperCase().equals("ENFP")){
+            if(choice==0){
+                return"•\tJoin in their passion projects and new experiences.";
+            }
+            if(choice==1){
+                return"•\tShow flexibility and an open mind.";
+            }
+            if(choice==2) {
+                return"•\tSupport their innovation and love for change.";
+            }
+            else{
+                return"•\tCommunicate with enthusiasm and positivity.";
+            }
+        }
+
+        return "Plese eneter in four letter format(e.g. enfp or ENFP)";
+    }
+
+    public String mbtinames (String x){//find corresponding names
+        String b="";
+        for(int i=0;i<mbti.size();i++){
+            if (mbti.get(i).toLowerCase().equals(x)){
+                b+=","+name.get(i);
+            }
+
+        }
+        b+="...";
+                return b;
+    }
+}
+
+
