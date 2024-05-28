@@ -1,0 +1,125 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class MBTIMatchFinder extends JFrame {
+    private JTextField nameField;
+    private JTextField mbtiField;
+    private JTextArea resultArea;
+    private JTextArea Area2;
+    private JTextField detailfield;
+    public MBTIMatchFinder() {
+        // Set up the frame
+        setTitle("MBTI Match Finder");
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        // Create panels for layout
+        JPanel inputPanel = new JPanel(new GridLayout(5, 1, 10, 10));
+        JPanel resultPanel = new JPanel(new BorderLayout());
+
+        // Title and input fields
+        JLabel nameLabel = new JLabel("Enter Your Name");
+        nameField = new JTextField();
+
+        JLabel mbtiLabel = new JLabel("Enter Your MBTI");
+        mbtiField = new JTextField();
+
+
+
+        // Button to trigger match finding
+        JButton findButton = new JButton("Find Your Match");
+        findButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                find();
+            }
+        });
+
+        JLabel detailLabel = new JLabel("Which MBTI do you want to know how to get alone with.");
+        detailfield = new JTextField();
+
+        JButton detailButton = new JButton("Get a tip");
+        detailButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                detail();
+            }
+        });
+
+
+
+        // Result area
+        resultArea = new JTextArea();
+        resultArea.setEditable(false);
+        resultArea.setLineWrap(true);
+        resultArea.setWrapStyleWord(true);
+        resultArea.setBorder(BorderFactory.createTitledBorder("Here are some suggested personalities to make friend with"));
+
+        Area2 = new JTextArea();
+        Area2.setEditable(false);
+        Area2.setLineWrap(true);
+        Area2.setWrapStyleWord(true);
+        Area2.setBorder(BorderFactory.createTitledBorder("Getting along tips"));
+
+        // Add components to panels
+        inputPanel.add(nameLabel);
+        inputPanel.add(nameField);
+        inputPanel.add(mbtiLabel);
+        inputPanel.add(mbtiField);
+        inputPanel.add(detailLabel);
+        inputPanel.add(detailfield);
+        inputPanel.add(findButton);
+        inputPanel.add(detailButton);
+
+        resultPanel.add(new JScrollPane(resultArea), BorderLayout.CENTER);
+        resultPanel.add(new JScrollPane(Area2), BorderLayout.SOUTH);
+
+        // Add panels to frame
+        add(inputPanel, BorderLayout.NORTH);
+        add(resultPanel, BorderLayout.CENTER);
+    }
+
+    private void find() {
+        // Retrieve input
+        String name = nameField.getText().toLowerCase();
+        String mbti = mbtiField.getText().toLowerCase();
+
+        MBTI objecta= new MBTI();
+        objecta.remove(name);//remove yourself
+        objecta.names(mbti);//initialize two lists with mathcing mbti
+        String result="Top 3 matches \n";
+        if(!objecta.matchp.get(0).equals("Error")) {
+            for (String i : objecta.matchp) {
+                result += i.toUpperCase() + ":" + objecta.mbtinames(i) + "\n";
+            }
+            result += "Other potential matches:\n";
+            for (String j : objecta.matchp2) {
+                result += j + ":" + objecta.mbtinames(j) + "\n";
+            }
+        }
+        else{
+            result="Plese eneter in four letter format(e.g. enfp or ENFP)";
+        }
+        // Display result
+
+        resultArea.setText(result);
+    }
+    private void detail(){
+        String type = detailfield.getText().toUpperCase();
+        MBTI objectb= new MBTI();
+        String result=objectb.suggestion(type);
+       Area2.setText(result);
+    }
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new MBTIMatchFinder().setVisible(true);
+            }
+        });
+    }
+}
+
